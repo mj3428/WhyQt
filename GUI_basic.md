@@ -12,3 +12,10 @@ SOURCES += main.cpp //  源文件、头文件、和窗体文件
 HEADERS += widget.h
 FORMS += widget.ui
 ```
+### 窗体相关的文件
+1. widget.h文件
+widget.h文件是窗体类的头文件。在创建项目时，选择窗体基类是QWidget，在widget.h中定义了一个继承自QWidget的类Widget.  
+```cpp
+// widget.h内容 //
+#
+```
