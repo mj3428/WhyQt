@@ -17,5 +17,27 @@ FORMS += widget.ui
 widget.h文件是窗体类的头文件。在创建项目时，选择窗体基类是QWidget，在widget.h中定义了一个继承自QWidget的类Widget.  
 ```cpp
 // widget.h内容 //
-#
+#ifndef WIDGET_H
+#define WIDGET_H
+
+#include <QWidget>
+
+namespace Ui {
+class Widget;
+}
+
+class Widget : public QWidget
+{
+    Q_OBJECT
+
+public:    // 定义了Widget类的构造函数和析构函数
+    explicit Widget(QWidget *parent = 0);
+    ~Widget();
+
+private:   // 
+    Ui::Widget *ui;
+};
+
+#endif // WIDGET_H
 ```
+Widget类的定义。widget.h主题部分是一个继承于QWidget的类Widget的定义，也就是本实例的窗体类。
