@@ -40,4 +40,21 @@ private:   //
 
 #endif // WIDGET_H
 ```
-Widget类的定义。widget.h主题部分是一个继承于QWidget的类Widget的定义，也就是本实例的窗体类。
+Widget类的定义。widget.h主题部分是一个继承于QWidget的类Widget的定义，也就是本实例的窗体类。  
+2. widget.cpp文件
+```cpp
+#include "widget.h"
+#include "ui_widget.h"
+
+Widget::Widget(QWidget *parent) :    // 构造函数头部
+    QWidget(parent),  // 意义是执行父类QWidget的构造函数，创建一个Ui::Widget类的对象ui。
+    ui(new Ui::Widget)    // 这个ui就是widget的private部分定义的指针变量ui
+{
+    ui->setupUi(this);
+}
+
+Widget::~Widget()
+{
+    delete ui;
+}
+```
