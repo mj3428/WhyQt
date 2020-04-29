@@ -19,7 +19,6 @@ widget.h文件是窗体类的头文件。在创建项目时，选择窗体基类
 // widget.h内容 //
 #ifndef WIDGET_H
 #define WIDGET_H
-
 #include <QWidget>
 
 namespace Ui {
@@ -57,4 +56,65 @@ Widget::~Widget()
 {
     delete ui;
 }
+```
+3. ui_widget.h文件
+```cpp
+#ifndef UI_WIDGET_H
+#define UI_WIDGET_H
+
+#include <QtCore/QVariant>
+#include <QtWidgets/QAction>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QWidget>
+
+QT_BEGIN_NAMESPACE
+
+class Ui_Widget       //         定义一个类Ui_Widget，用于封装可视化设计的界面
+{
+public:
+    QLabel *LabDemo;  //         在界面上每个组件定义了一个指针变量，变量名称就是设置的objectName.
+    QPushButton *btnClose;
+
+    void setupUi(QWidget *Widget)     // setupUi()函数用于创建各个界面组件，并设置其位置、大小、文字内容、字体等属性，设置信号与槽的关联
+    {
+        if (Widget->objectName().isEmpty())
+            Widget->setObjectName(QStringLiteral("Widget"));
+        Widget->resize(280, 168);
+        LabDemo = new QLabel(Widget);
+        LabDemo->setObjectName(QStringLiteral("LabDemo"));
+        LabDemo->setGeometry(QRect(50, 20, 201, 51));
+        QFont font;
+        font.setPointSize(20);
+        font.setBold(true);
+        font.setWeight(75);
+        LabDemo->setFont(font);
+        btnClose = new QPushButton(Widget);
+        btnClose->setObjectName(QStringLiteral("btnClose"));
+        btnClose->setGeometry(QRect(150, 120, 75, 23));
+
+        retranslateUi(Widget);
+        QObject::connect(btnClose, SIGNAL(clicked()), Widget, SLOT(close()));  // 将在UI设计器里的设置的信号与槽的关联转换为语句
+
+        QMetaObject::connectSlotsByName(Widget);  // 设置槽函数的关联方式，用于将UI设计器自动生成的组件信号的槽函数与组件信号相关联
+    } // setupUi
+
+    void retranslateUi(QWidget *Widget)     //  调用retranslateUi(Widget)，用来设置界面各组件的文字内容属性，比如标签的文字,按键的文字等
+    {
+        Widget->setWindowTitle(QApplication::translate("Widget", "My First Demo", Q_NULLPTR));
+        LabDemo->setText(QApplication::translate("Widget", "Hello, World", Q_NULLPTR));
+        btnClose->setText(QApplication::translate("Widget", "Close", Q_NULLPTR));
+    } // retranslateUi
+
+};
+
+namespace Ui {        // 定义命名空间，并定义一个从Ui_Widget继承的类Widget
+    class Widget: public Ui_Widget {};
+} // namespace Ui
+
+QT_END_NAMESPACE
+#endif // UI_WIDGET_H
 ```
