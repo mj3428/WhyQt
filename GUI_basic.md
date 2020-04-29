@@ -118,3 +118,13 @@ namespace Ui {        // 定义命名空间，并定义一个从Ui_Widget继承�
 QT_END_NAMESPACE
 #endif // UI_WIDGET_H
 ```
+### 信号与槽
+槽(slot)就是对信号响应的函数。  
+信号与槽关联是用QObject::connect()函数实现的，其基本格式是:`QObject::connect(sender, SIGNAL(signal()), receiver, SLOT(slot()));`QObject是
+一个静态函数，是所有Qt类的基类。  
+其中,sender是发射信号的对象的名称。signal()是信号名称。receiver是接收信号的对象名称，slot()是槽函数的名称。  
+SIGNAL和SLOT是Qt的宏，用于指明信号和槽，并将它们的参数转换为相应的字符串。  
+比如:`QObject::connect(btnClose, SIGNAL(clicked()), Widget, SLOT(close()));`其作用就是将btnClose按钮的clicked()信号与窗体（Widget）的
+槽函数close()相关联。  
+- 一个信号可以连接多个槽:当一个信号与多个槽函数关联时，参函数按照建立连接时的顺序依次执行。    
+- 多个
