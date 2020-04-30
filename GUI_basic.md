@@ -127,4 +127,8 @@ SIGNAL和SLOT是Qt的宏，用于指明信号和槽，并将它们的参数转�
 比如:`QObject::connect(btnClose, SIGNAL(clicked()), Widget, SLOT(close()));`其作用就是将btnClose按钮的clicked()信号与窗体（Widget）的
 槽函数close()相关联。  
 - 一个信号可以连接多个槽:当一个信号与多个槽函数关联时，参函数按照建立连接时的顺序依次执行。    
-- 多个
+- 多个信号可以连接同一个槽
+- 一个信号可以连接另外一个信号，特殊需求:`connect(spinNum, SIGNAL(valueChanged(int)), this, SIGNAL(refreshInfo(int));`  
+- 信号与槽的参数个数和类型需要一致，至少信号的参数不能少于槽的参数
+- 在使用信号与槽的类中，必须在类的定义中加入宏Q_Object  
+- 槽函数通常被立即执行，就像正常调用一个函数一样  
