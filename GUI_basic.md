@@ -132,3 +132,7 @@ SIGNAL和SLOT是Qt的宏，用于指明信号和槽，并将它们的参数转�
 - 信号与槽的参数个数和类型需要一致，至少信号的参数不能少于槽的参数
 - 在使用信号与槽的类中，必须在类的定义中加入宏Q_Object  
 - 槽函数通常被立即执行，就像正常调用一个函数一样  
+### 可视化生成槽函数原型和框架
+查看编译生成的ui_qwdialog.h文件。构造函数里调用的setupUi()是在ui_qwdialog.h文件里实现的。查看setupUi(),其实秘密
+就在于connectSlotsByName(QWDialog)函数将搜索QWDialog界面上的所有组件，将信号与槽函数匹配的信号关联起来。它假设槽函数的名称是:`void on_
+<object name>_<signal name>(<signal parameters>);`  
