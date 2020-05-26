@@ -35,3 +35,5 @@ void QWMainWind::on_comboFont_currentIndexChanged(const QString &arg1)
 }
 
 ```
+## 为应用程序设置图标
+在.pro项目配置文件里用RC_ICONS设置图标文件名，添加一行代码`RC_ICONS = AppIcon.ico`
