@@ -1,6 +1,14 @@
 # 手工创建的组件的信号与槽
-```cpp
 
+```cpp
+class QWMainWind:public QMainWindow
+{
+private:
+    void iniSignalSlots();  //  关联信号与槽
+private slots:
+    void on_spinBoxFontSize_valueChanged(int aFontSize);    //改变字体大小
+    void on_comboFont_currentIndexChanged(const QString &arg1); //  选择字体
+}
 
 void QWMainWind::iniSignalSlots()
 { //信号与槽的关联，当函数带有参数时，必须写明参数的类型
