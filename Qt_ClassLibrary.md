@@ -13,3 +13,4 @@ foreach (const QString &str,map.keys())
   qDebug() << str << ':' << map.value(str);
 ```
 至于多值映射，可以用两重foreach嵌套。  
+另外，foreach这里遍历关键字，其实是创建了容器的一个副本，所以不能修改原来容器变量的数据项。  
